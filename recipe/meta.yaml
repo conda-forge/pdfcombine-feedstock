@@ -1,6 +1,6 @@
 {% set name = "pdfcombine" %}
-{% set version = "0.4.2" %}
-{% set sha256 = "418d15a0941a362f81def0f4c5747e0cd08a8cafac0406fccb9efe228ac4aac9" %}
+{% set version = "0.4.3" %}
+{% set sha256 = "2604160e964b2415bfd46f85c7eed15f470ce425df97f872b7bcc36c083abb8a" %}
 
 package:
   name: {{ name|lower }}
