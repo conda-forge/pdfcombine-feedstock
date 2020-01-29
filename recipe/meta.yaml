@@ -1,6 +1,6 @@
 {% set name = "pdfcombine" %}
-{% set version = "1.0.0" %}
-{% set sha256 = "cb8915a0d1739c093f2278321b2b808a1128e310a0f63b1c3ed2422833bb358a" %}
+{% set version = "1.1.0" %}
+{% set sha256 = "9241b4b250d9a55eedf308a6a7f79d2dc2d399cb23990f35bd4de285793ffd43" %}
 
 package:
   name: {{ name|lower }}
@@ -15,21 +15,22 @@ build:
   noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   entry_points:
-    - pdfcombine = pdfcombine:main
+    - pdfcombine = pdfcombine.cli.pdfcombine:main
 
 requirements:
   host:
     - python >=3
     - pip
-    - setuptools
-    - docopt
   run:
     - python >=3
     - docopt
     - click
+    - pyyaml
     - ghostscript
 
 test:
+  imports:
+    - pdfcombine
   commands:
     - pdfcombine --help
 
