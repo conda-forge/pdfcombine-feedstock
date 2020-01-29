@@ -15,21 +15,22 @@ build:
   noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   entry_points:
-    - pdfcombine = pdfcombine:main
+    - pdfcombine = pdfcombine.cli.pdfcombine:main
 
 requirements:
   host:
     - python >=3
     - pip
-    - setuptools
-    - docopt
   run:
     - python >=3
     - docopt
     - click
+    - pyyaml
     - ghostscript
 
 test:
+  imports:
+    - pdfcombine
   commands:
     - pdfcombine --help
 
