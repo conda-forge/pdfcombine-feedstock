@@ -5,9 +5,13 @@ Home: https://github.com/tdegeus/pdfcombine
 
 Package license: MIT
 
-Feedstock license: BSD 3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pdfcombine-feedstock/blob/master/LICENSE.txt)
 
 Summary: Combine PDF files with Ghostscript
+
+Development: https://github.com/tdegeus/pdfcombine
+
+Documentation: https://github.com/tdegeus/pdfcombine
 
 Combine PDF files with Ghostscript
 
