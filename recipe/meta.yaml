@@ -1,38 +1,44 @@
-{% set name = "pdfcombine" %}
-{% set version = "1.1.4" %}
-{% set sha256 = "301e3be8ded523a811b185f601d12ae8b1d9a4afcc980d2da179e6e32d8276e0" %}
+{% set version = "1.1.5" %}
 
 package:
-  name: {{ name|lower }}
+  name: pdfcombine
   version: {{ version }}
 
 source:
   url: https://github.com/tdegeus/pdfcombine/archive/v{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 773e50a00fb91dc3a2dd71164bb8a8b24b2168a9aad4c5f1072f2669a904104f
 
 build:
   number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  script_env: SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
+  script: {{ PYTHON }} -m pip install . -vv
   entry_points:
     - pdfcombine = pdfcombine.cli.pdfcombine:main
 
 requirements:
   host:
-    - python >=3
     - pip
+    - python >=3.6
+    - setuptools >=45
+    - setuptools_scm >=6.2
   run:
-    - python >=3
-    - docopt
-    - click
-    - pyyaml
+    - click >=4.0
+    - docopt >=0.6.2
     - ghostscript
+    - numpy
+    - python >=3.6
+    - pyyaml >=1.0
 
 test:
+  requires:
+    - pip
   imports:
     - pdfcombine
   commands:
-    - pdfcombine --help
+    - pip check
+    - python -c "import pdfcombine; assert pdfcombine.version == '{{ version }}'"
+    - pdfcombine --version | grep {{ version }}
 
 about:
   home: https://github.com/tdegeus/pdfcombine
