@@ -9,7 +9,7 @@ source:
   sha256: 773e50a00fb91dc3a2dd71164bb8a8b24b2168a9aad4c5f1072f2669a904104f
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script_env: SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
   script: {{ PYTHON }} -m pip install . -vv
@@ -19,7 +19,7 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
     - setuptools >=45
     - setuptools_scm >=6.2
   run:
@@ -27,12 +27,13 @@ requirements:
     - docopt >=0.6.2
     - ghostscript
     - numpy
-    - python >=3.6
+    - python >={{ python_min }}
     - pyyaml >=1.0
 
 test:
   requires:
     - pip
+    - python {{ python_min }}
   imports:
     - pdfcombine
   commands:
